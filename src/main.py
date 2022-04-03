@@ -5,7 +5,7 @@ import time
 import function
 
 #KAMUS GLOBAL
-path = "testcase/puzzle.txt"
+path = "../test/puzzle.txt"
 gameState = "" # check, solve, show, done. tepatnya kek 'after this, check'
 root = [[0 in range (function.puzzleSize)] in range(function.puzzleSize)]
 hasil = 0
