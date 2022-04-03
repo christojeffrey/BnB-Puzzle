@@ -34,7 +34,7 @@ def kurang(puzzle):
                 # angka setelah(j) angka yg sedah di cek(i) harus lebih besar. jadi kalo lebih kecil, dijumlahkan ke temp
                 # kecuali kalo j = 0 (karena aslinya 0 itu holder buat angka terbesar di puzzle, jadi gamungkin lebih kecil dari i)
                 temp += 1
-        detail += "nilai kurang di baris "+ str( (i // puzzleSize) + 1) +  "kolom " + str((i % puzzleSize) + 1 ) +  ": "+ str(temp)+ "\n"
+        detail += "nilai kurang di baris "+ str( (i // puzzleSize) + 1) +  " kolom " + str((i % puzzleSize) + 1 ) +  ": "+ str(temp)+ "\n"
         sum += temp
 
     for i in range(puzzleSize):
@@ -100,9 +100,9 @@ def calculateCost(puzzle, depth):
     cost = 0
     for i in range(puzzleSize):
         for j in range(puzzleSize):
-            if puzzle[i][j] == 0 and (i*puzzleSize + j + 1) != puzzleSize*puzzleSize:
+            if puzzle[i][j] == 0:
+                if(puzzleSize * puzzleSize != (i*puzzleSize + j + 1)):
                     cost += 1
-
             elif puzzle[i][j] != (i*puzzleSize + j + 1):
                 cost += 1
     cost += depth

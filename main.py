@@ -65,7 +65,7 @@ def puzzleSourceButtonClicked(optionSelected):
     statusLabel.config(text="click action check whether solution exist")
 
 
-def solving():
+def solvePuzzle():
     global timeTaken
     global root
     global memo
@@ -140,11 +140,11 @@ def actionButtonClicked():
             gameState = "solve"
     elif(gameState == "solve"):
             statusLabel.configure(text = "solving...")
-            solving()
+            solvePuzzle()
             configureMemoReversed()
             statusLabel.configure(text = "show step 0 of " + str(totalStep))
             gameState = "show"
-            detailLabel.configure(text = "solved!\n" + str(timeTaken)+ " seconds")
+            detailLabel.configure(text = "solved!\n" + str(timeTaken)+ " seconds\n" + str(jumlahDibangkitkan) + " nodes generated")
             
     elif(gameState == "show"):
         statusLabel.configure(text = "show step " + str(currentStep) + " of " + str(totalStep))
