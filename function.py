@@ -160,38 +160,3 @@ def moveEmpty(direction, puzzle):
                     newPuzzle[i][j] = puzzle[i][j+1]
                     newPuzzle[i][j+1] = 0
                 return newPuzzle
-
-
-
-# tidak digunakan jika menggunakan gui
-
-def printPuzzle(puzzle):
-    #mencetak puzzle
-    for i in range(puzzleSize):
-        for j in range(puzzleSize):
-            if(puzzle[i][j] < 10):
-                print(puzzle[i][j], end="  ")
-            else:
-                print(puzzle[i][j], end=" ")
-        print()
-
-def printLangkah(memo):
-    # siapkan memo
-    memoReversed = {}
-    goalNode = [[((i*puzzleSize) + j + 1) for j in range(puzzleSize)] for i in range(puzzleSize)]
-    goalNode[puzzleSize-1][puzzleSize-1] = 0
-    stringNode = puzzleToString(goalNode)
-
-    while (stringNode != "root"):
-        memoReversed[memo[stringNode]] = stringNode
-        stringNode = memo[stringNode]
-
-    # print langkah
-    print("Langkah:")
-    stringNode = "root"
-    counter = 1
-    while(stringNode != puzzleToString(goalNode)):
-        print(str(counter) + ".")
-        printPuzzle(stringToPuzzle(memoReversed[stringNode]))
-        stringNode = memoReversed[stringNode]
-        counter += 1

@@ -5,7 +5,7 @@ import time
 import function
 
 #KAMUS GLOBAL
-path = "puzzle.txt"
+path = "testcase/puzzle.txt"
 gameState = "" # check, solve, show, done. tepatnya kek 'after this, check'
 root = [[0 in range (function.puzzleSize)] in range(function.puzzleSize)]
 hasil = 0
@@ -148,12 +148,14 @@ def actionButtonClicked():
             
     elif(gameState == "show"):
         statusLabel.configure(text = "show step " + str(currentStep) + " of " + str(totalStep))
-        currentDisplayedPuzzle = function.stringToPuzzle(memoReversed[function.puzzleToString(currentDisplayedPuzzle)])
-        updateWindowPuzzle()
-        currentStep += 1
-        if(currentStep > totalStep):
+        if(currentStep <= totalStep):
+            currentDisplayedPuzzle = function.stringToPuzzle(memoReversed[function.puzzleToString(currentDisplayedPuzzle)])
+            updateWindowPuzzle()
+            currentStep += 1
+        else:
             statusLabel.configure(text = "done!\nclick action to quit")
             gameState = "done"
+        
         
     elif (gameState == "done"):
         rootWindow.destroy()
