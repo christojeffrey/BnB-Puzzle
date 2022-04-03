@@ -19,20 +19,22 @@ def txtToPuzzle(path):
     return puzzle
     
 def kurang(puzzle):
-    print(puzzle)
+    detail = ""
     sum = 0
     flatten_list = []
     for i in puzzle:
         for j in i:
             flatten_list.append(j)
-    for i in range(puzzleSize*puzzleSize):
+    for i in range(puzzleSize*puzzleSize    ):
         temp = 0
         if(flatten_list[i] == 0):
             temp += puzzleSize*puzzleSize - i - 1
         for j in range(i, puzzleSize * puzzleSize):
             if (flatten_list[j] < flatten_list[i] and flatten_list[j] != 0):
+                # angka setelah(j) angka yg sedah di cek(i) harus lebih besar. jadi kalo lebih kecil, dijumlahkan ke temp
+                # kecuali kalo j = 0 (karena aslinya 0 itu holder buat angka terbesar di puzzle, jadi gamungkin lebih kecil dari i)
                 temp += 1
-        print("nilai kurang di baris ", (i // puzzleSize) + 1, "kolom ", (i % puzzleSize) + 1 , ": ", temp)
+        detail += "nilai kurang di baris "+ str( (i // puzzleSize) + 1) +  "kolom " + str((i % puzzleSize) + 1 ) +  ": "+ str(temp)+ "\n"
         sum += temp
 
     for i in range(puzzleSize):
@@ -40,21 +42,13 @@ def kurang(puzzle):
             if(puzzle[i][j] == 0):  
                 if ((i + j) % 2 == 1):
                     sum += 1
-                    print("ditambah X = 1")
+                    detail += "ditambah X = 1\n"
                 else:
-                    print("ditambah X = 0")
-    print("hasil algoritma kurang(i) + X:", sum)
-    return sum
+                    detail += "ditambah X = 0\n"
+    detail += "hasil algoritma kurang(i) + X:"+ str(sum)
+    return sum, detail
 
-def printPuzzle(puzzle):
-    #mencetak puzzle
-    for i in range(puzzleSize):
-        for j in range(puzzleSize):
-            if(puzzle[i][j] < 10):
-                print(puzzle[i][j], end="  ")
-            else:
-                print(puzzle[i][j], end=" ")
-        print()
+
 
 def generatePuzzle():
     puzzle = [[0 for i in range (puzzleSize)] for i in range(puzzleSize)]
@@ -120,11 +114,12 @@ def puzzleToString(puzzle):
     for i in range(puzzleSize):
         for j in range(puzzleSize):
             string += str(puzzle[i][j])
-            string += " "
+            string += "_"
     return string
+
 def stringToPuzzle(string):
     #mengembalikan puzzle dari string
-    array = string.split(" ")
+    array = string.split("_")
     puzzle = [[0 for i in range (puzzleSize)] for i in range(puzzleSize)]
     for i in range(0, puzzleSize):
         for j in range(0, puzzleSize):
@@ -146,6 +141,7 @@ def directionCounter(direction):
         return ""
 
 def moveEmpty(direction, puzzle):
+    # mengganti puzzle dengan puzzle yang sudah di update, menggerakan sel 0 ke arah direction
     # dipastikan sel kosong bisa bergerak ke arah tersebut
     newPuzzle = list(map(list, puzzle))
     for i in range (puzzleSize):
@@ -164,6 +160,21 @@ def moveEmpty(direction, puzzle):
                     newPuzzle[i][j] = puzzle[i][j+1]
                     newPuzzle[i][j+1] = 0
                 return newPuzzle
+
+
+
+# tidak digunakan jika menggunakan gui
+
+def printPuzzle(puzzle):
+    #mencetak puzzle
+    for i in range(puzzleSize):
+        for j in range(puzzleSize):
+            if(puzzle[i][j] < 10):
+                print(puzzle[i][j], end="  ")
+            else:
+                print(puzzle[i][j], end=" ")
+        print()
+
 def printLangkah(memo):
     # siapkan memo
     memoReversed = {}
@@ -174,7 +185,7 @@ def printLangkah(memo):
     while (stringNode != "root"):
         memoReversed[memo[stringNode]] = stringNode
         stringNode = memo[stringNode]
-        
+
     # print langkah
     print("Langkah:")
     stringNode = "root"
