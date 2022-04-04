@@ -6,7 +6,7 @@ import function
 
 #KAMUS GLOBAL
 path = "../test/puzzle.txt"
-gameState = "" # check, solve, show, done. tepatnya kek 'after this, check'
+gameState = "" # check, solve, show, done. tepatnya semacam 'after this, check'
 root = [[0 in range (function.puzzleSize)] in range(function.puzzleSize)]
 hasil = 0
 memo = {}

@@ -3,12 +3,13 @@
 ## Deskripsi singkat
 
 masukin foto
-adalah sebuah program untuk membuat puzzle persegi, lalu mencari langkah untuk menyelesaikannya dengan algoritma branch and bound. dibuat dalam bahasa python, dan menggunakan
+adalah sebuah program untuk membuat puzzle persegi, lalu mencari langkah untuk menyelesaikannya dengan algoritma branch and bound. dibuat dalam bahasa python, dan menggunakan tkinter.
+![alt text](gui.png)
 
 ## Requirement
 
 - python
-- tkinter
+- tkinter(include dalam python)
 
 ## Langkah meng-compile program jika diperlukan
 
