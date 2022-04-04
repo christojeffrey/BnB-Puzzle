@@ -12,13 +12,15 @@ adalah sebuah program untuk membuat puzzle persegi, lalu mencari langkah untuk m
 
 ## Langkah meng-compile program jika diperlukan
 
-kasih cara ngebuild exe
+di build menggunakan pyinstaller(membutuhkan upx.exe, sudah ada di dalam folder src). install dengan `pip install pyinstaller`
+lalu jalankan `pyinstaller --onefile --name "myapp" "main.py"` dengan di working directory yang sama dengan main.py
 
 ## Cara menggunakan program
 
 1. buka terminal dengan repo sebagai working directory
 2. masukkan `py .\main.py`
 3. sebuah window akan muncul
+   atau double click `puzzle.exe` di dalam folder bin
 
 ## Author / identitas pembuat
 
